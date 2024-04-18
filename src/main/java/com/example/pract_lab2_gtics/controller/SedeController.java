@@ -1,7 +1,9 @@
 package com.example.pract_lab2_gtics.controller;
 
 import com.example.pract_lab2_gtics.entity.Sede;
+import com.example.pract_lab2_gtics.entity.Trabajador;
 import com.example.pract_lab2_gtics.repository.SedeRepository;
+import com.example.pract_lab2_gtics.repository.TrabajadorRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,10 +17,14 @@ import java.util.Optional;
 public class SedeController {
 
     final SedeRepository sedeRepository;
+    final TrabajadorRepository trabajadorRepository;
 
-    public SedeController(SedeRepository sedeRepository){
+    public SedeController(SedeRepository sedeRepository, TrabajadorRepository trabajadorRepository){
         this.sedeRepository = sedeRepository;
+        this.trabajadorRepository = trabajadorRepository;
     }
+
+
 
     @GetMapping(value ={"/sede","","/"})
     public String listaSede(Model model){
@@ -43,7 +49,9 @@ public class SedeController {
         Optional<Sede> sedeProv = sedeRepository.findById(id);
         if(sedeProv.isPresent()){
             Sede sede = sedeProv.get();
+            List<Trabajador> listaTrabajadores =trabajadorRepository.findByIdSede(id);
             model.addAttribute("sede", sede);
+            model.addAttribute("listaTrabajadores", listaTrabajadores);
             return "sede_vistas/sedeEdit";
         }
         return "redirect:/sede";

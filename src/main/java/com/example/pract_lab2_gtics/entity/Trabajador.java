@@ -8,13 +8,21 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "trabajador")
+@Table(name = "trabajadores")
 
 
 public class Trabajador {
 
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
-    @Column(name="dn1",nullable = false)
+    @Column(name="dni",nullable = false)
     private String dni;
+
+    @Column(name="nombres",nullable = false)
+    private String nombres;
+    @Column(name="apellidos",nullable = false)
+    private String apellidos;
+    @Column(name="correo",nullable = false)
+    private String correo;
+    @Column(name="idsede",nullable = false)
+    private Integer idSede;
 }

@@ -46,6 +46,25 @@
         <a th:href="@{/sede}" class="btn btn-danger">Cancelar</a>
     </form>
 </div>
+
+<div style="text-align: center;"><h1>Lista de Trabajadores de la Sede</h1></div>
+<table class="table table-striped">
+    <tr>
+        <th>#</th>
+        <th>DNI del trabajador</th>
+        <th>Correo del trabajador</th>
+        <th>Nombre del trabajador</th>
+        <th>Apellido del trabajador</th>
+    </tr>
+    <tr th:each="trabajador,obj: ${listaTrabajadores}">
+        <td th:text="${obj.index+1}"> </td>
+        <td th:text="${trabajador.dni}"></td>
+        <td th:text="${trabajador.correo}"></td>
+        <td th:text="${trabajador.nombres}"></td>
+        <td th:text="${trabajador.apellidos}"></td>
+    </tr>
+</table>
+
 <div style="background-color: #dae0e8;">
     <div style="padding-top: 10px; padding-bottom: 10px;" class="container">
         # Grupo 3 PUCP @ 2023
